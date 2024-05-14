@@ -23,3 +23,7 @@ Route::get('/crypto', [CryptoControllerbuy::class, 'index']);
 Route::post('/crypto', [CryptoControllerbuy::class, 'store']);
 
 require __DIR__ . '/auth.php';
+
+Route::get('/overview', function () {
+    return view('overview');
+});
