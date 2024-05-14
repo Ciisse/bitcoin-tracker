@@ -56,7 +56,7 @@
                     <div class="flex flex-col justify-center gap-10 md:flex-row">
                         <div class="w-full md:w-1/2">
                             <h1 class="text-4xl font-bold tracking-tight text-black dark:text-white md:text-5xl">
-                                Bitcoin Tracker test test
+                                Bitcoin Tracker
                             </h1>
 
                             <p class="mt-4 text-lg text-black/70 dark:text-white/70">
