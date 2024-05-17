@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <title>Buy/Sell Cryptocurrency</title>
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
 
-<body>
+<body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="container mt-5">
 
         <!-- The Modal -->
-        <div class="modal fade" id="cryptoModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="cryptoModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -29,17 +30,23 @@
                                     <option value="sell">Sell</option>
                                 </select>
                             </div>
+
+                            @foreach ($users as $user)
+                            <p>{{ $user->username }}</p>
+                            @endforeach
+
                             <?php
+
                             $endpoint = 'https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT';
                             $response = file_get_contents($endpoint);
                             $data = json_decode($response, true);
-                            
+
                             echo 'Current Price of Bitcoin (BTC/USDT): ' . $data['price'];
+
                             ?>
                             <div class="form-group">
                                 <label for="amount">Amount:</label>
-                                <input type="number" class="form-control" id="amount" name="amount"
-                                    placeholder="Amount">
+                                <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount">
                             </div>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>

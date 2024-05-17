@@ -28,3 +28,5 @@ class User extends Authenticatable
         return $this->hasOne(Portfolio::class);
     }
 }
+
+$users = User::all();
