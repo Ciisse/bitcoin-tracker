@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class CryptoControllerbuy extends Controller
 {
     public function index()
     {
-        return view('crypto');
+        $users = User::all();
+        return view('crypto', compact('users'));
     }
 
     public function store(Request $request)

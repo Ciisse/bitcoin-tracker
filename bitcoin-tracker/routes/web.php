@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CryptoControllerbuy;
+use App\Http\Controllers\FileUploadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,7 +18,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 Route::get('/crypto', [CryptoControllerbuy::class, 'index']);
 Route::post('/crypto', [CryptoControllerbuy::class, 'store']);
@@ -34,3 +34,5 @@ Route::post('/overview', function(Request $request) {
     return redirect()->route('overview')
      ->with('success', 'Token generated: ' . $token->plainTextToken);
 })->middleware('auth')->name('overview');
+
+Route::post('/picture-route', [FileUploadController::class, 'store']);
