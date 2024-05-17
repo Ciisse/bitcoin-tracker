@@ -15,6 +15,18 @@
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    <form method="POST" action="/picture-route" enctype="multipart/form-data">
+                        @csrf
+                        <x-input-label for="profile_picture" :value="__('Profile Picture')" />
+                        <x-text-input id="profile_picture" name="profile_picture" type="file" class="mt-1 block w-full" :value="old('profile_picture', $user->profile_picture)" />
+                        <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+                        <x-primary-button class="mt-2">Upload</x-primary-button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
