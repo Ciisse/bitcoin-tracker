@@ -19,7 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
 Route::get('/crypto', [CryptoControllerbuy::class, 'index']);
 Route::post('/crypto', [CryptoControllerbuy::class, 'store']);
 
@@ -28,5 +27,12 @@ require __DIR__ . '/auth.php';
 Route::get('/overview', function () {
     return view('overview');
 });
+
+Route::post('/overview', function(Request $request) {
+    $token = Auth::user()->createToken($request->name_token ?? 'default');
+
+    return redirect()->route('overview')
+     ->with('success', 'Token generated: ' . $token->plainTextToken);
+})->middleware('auth')->name('overview');
 
 Route::post('/picture-route', [FileUploadController::class, 'store']);
