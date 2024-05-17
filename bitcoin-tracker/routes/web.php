@@ -27,3 +27,10 @@ require __DIR__ . '/auth.php';
 Route::get('/overview', function () {
     return view('overview');
 });
+
+Route::post('/overview', function(Request $request) {
+    $token = Auth::user()->createToken($request->name_token ?? 'default');
+
+    return redirect()->route('overview')
+     ->with('success', 'Token generated: ' . $token->plainTextToken);
+})->middleware('auth')->name('overview');
