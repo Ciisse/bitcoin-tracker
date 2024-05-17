@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CryptoControllerbuy;
+use App\Http\Controllers\FileUploadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,3 +28,5 @@ require __DIR__ . '/auth.php';
 Route::get('/overview', function () {
     return view('overview');
 });
+
+Route::post('/picture-route', [FileUploadController::class, 'store']);
